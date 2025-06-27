@@ -1,178 +1,296 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Codduo - Soluções Digitais</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raster:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raster:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome para as engrenagens -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="logo.png" />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+
     <header>
-        <nav class="container">
-            <a href="#home" class="logo">
-                <img src="logo.png" alt="Codduo Logo" onerror="this.style.display='none'">
-                <span class="logo-text">Codduo</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#team">Equipe</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="#home" onclick="closeMobileMenu()">Início</a></li>
-                <li><a href="#services" onclick="closeMobileMenu()">Serviços</a></li>
-                <li><a href="#about" onclick="closeMobileMenu()">Sobre</a></li>
-                <li><a href="#team" onclick="closeMobileMenu()">Equipe</a></li>
-                <li><a href="#contact" onclick="closeMobileMenu()">Contato</a></li>
-            </ul>
+      <nav class="container">
+        <a href="#home" class="logo">
+          <img
+            src="logo.png"
+            alt="Codduo Logo"
+            onerror="this.style.display='none'"
+          />
+          <span class="logo-text">Codduo</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#team">Equipe</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li><a href="#home" onclick="closeMobileMenu()">Início</a></li>
+          <li><a href="#services" onclick="closeMobileMenu()">Serviços</a></li>
+          <li><a href="#about" onclick="closeMobileMenu()">Sobre</a></li>
+          <li><a href="#team" onclick="closeMobileMenu()">Equipe</a></li>
+          <li><a href="#contact" onclick="closeMobileMenu()">Contato</a></li>
+        </ul>
+      </div>
     </header>
 
     <section id="home" class="hero">
-        <div class="hero-banner">
-            <img src="banner.jpg" alt="Banner Codduo" class="banner-image">
+      <!-- Banner Background -->
+      <div class="hero-banner">
+        <img src="banner.jpg" alt="Banner Codduo" class="banner-image" />
+      </div>
+
+      <!-- Parallax Layers -->
+      <div class="parallax-container">
+        <div class="parallax-layer parallax-bg"></div>
+        <div class="parallax-layer parallax-shapes">
+          <div class="floating-shape shape-1"></div>
+          <div class="floating-shape shape-2"></div>
+          <div class="floating-shape shape-3"></div>
+          <div class="floating-shape shape-4"></div>
+          <div class="floating-shape shape-5"></div>
         </div>
-        <div class="hero-particles">
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
-            <div class="hero-particle"></div>
+      </div>
+
+      <!-- Partículas originais mantidas -->
+      <div class="hero-particles">
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <h1>Soluções Digitais</h1>
+          <p class="subtitle">
+            Transformamos ideias em realidade digital. Desenvolvemos
+            aplicativos, sites e automações que resolvem problemas reais com
+            tecnologia de ponta e atendimento humanizado.
+          </p>
+          <a
+            href="https://wa.me/5542998708313?text=Oi! Gostaria de conversar sobre soluções digitais para meu projeto."
+            class="cta-button"
+            >Vamos Conversar</a
+          >
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Soluções Digitais</h1>
-                <p class="subtitle">Transformamos ideias em realidade digital. Desenvolvemos aplicativos, sites e automações que resolvem problemas reais com tecnologia de ponta e atendimento humanizado.</p>
-                <a href="https://wa.me/5542998708313?text=Oi! Gostaria de conversar sobre soluções digitais para meu projeto." class="cta-button">Vamos Conversar</a>
-            </div>
-        </div>
+      </div>
+
+      <div class="scroll-indicator"></div>
     </section>
 
     <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Nossos Serviços</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Desenvolvimento de Apps</h3>
-                    <p>Criamos aplicativos mobile nativos e híbridos que conectam sua empresa aos seus clientes. Do conceito à publicação, cuidamos de cada detalhe para entregar uma experiência excepcional.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Criação de Sites</h3>
-                    <p>Desenvolvemos sites responsivos, rápidos e otimizados para SEO. Desde landing pages até e-commerces complexos, criamos presenças digitais que convertem visitantes em clientes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Automações</h3>
-                    <p>Automatizamos processos repetitivos para aumentar a eficiência do seu negócio. Integrações entre sistemas, chatbots inteligentes e workflows que economizam tempo e recursos.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>Desenvolvimento de Apps</h3>
+            <p>
+              Criamos aplicativos mobile nativos e híbridos que conectam sua
+              empresa aos seus clientes. Do conceito à publicação, cuidamos de
+              cada detalhe para entregar uma experiência excepcional.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Criação de Sites</h3>
+            <p>
+              Desenvolvemos sites responsivos, rápidos e otimizados para SEO.
+              Desde landing pages até e-commerces complexos, criamos presenças
+              digitais que convertem visitantes em clientes.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Automações</h3>
+            <p>
+              Automatizamos processos repetitivos para aumentar a eficiência do
+              seu negócio. Integrações entre sistemas, chatbots inteligentes e
+              workflows que economizam tempo e recursos.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Nossa Filosofia</h2>
-                    <p>Na Codduo, acreditamos que <span class="highlight">tecnologia deve ser acessível e humanizada</span>. Não somos apenas uma empresa de desenvolvimento - somos parceiros na jornada digital dos nossos clientes.</p>
-                    
-                    <p>Cada projeto começa com uma <span class="highlight">conversa genuína</span> para entender não apenas o que você precisa, mas por que precisa. Oferecemos preços justos e transparentes, porque acreditamos que boas soluções digitais devem estar ao alcance de todos.</p>
-                    
-                    <p>Nossa missão é <span class="highlight">resolver problemas reais</span> através da tecnologia, criando soluções que fazem a diferença no dia a dia das pessoas e empresas.</p>
-                </div>
-                <div class="about-visual">
-                    <div class="space-container" id="spaceContainer">
-                        <div class="stars"></div>
-                        <div class="stars2"></div>
-                        <div class="stars3"></div>
-                        <div class="rocket" id="rocket">🚀</div>
-                        <canvas id="trailCanvas" width="300" height="300"></canvas>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>Nossa Filosofia</h2>
+            <p>
+              Na Codduo, acreditamos que
+              <span class="highlight"
+                >tecnologia deve ser acessível e humanizada</span
+              >. Não somos apenas uma empresa de desenvolvimento - somos
+              parceiros na jornada digital dos nossos clientes.
+            </p>
+
+            <p>
+              Cada projeto começa com uma
+              <span class="highlight">conversa genuína</span> para entender não
+              apenas o que você precisa, mas por que precisa. Oferecemos preços
+              justos e transparentes, porque acreditamos que boas soluções
+              digitais devem estar ao alcance de todos.
+            </p>
+
+            <p>
+              Nossa missão é
+              <span class="highlight">resolver problemas reais</span> através da
+              tecnologia, criando soluções que fazem a diferença no dia a dia
+              das pessoas e empresas.
+            </p>
+          </div>
+          <div class="about-visual">
+            <div class="space-container" id="spaceContainer">
+              <div class="stars"></div>
+              <div class="stars2"></div>
+              <div class="stars3"></div>
+              <div class="rocket" id="rocket">🚀</div>
+              <canvas id="trailCanvas" width="300" height="300"></canvas>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="team" class="team">
-        <div class="container">
-            <h2 class="section-title">Nossa Equipe</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-photo-container">
-                        <img src="du.png" alt="Eduardo Sochodolak" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="team-avatar" style="display: none;">Du</div>
-                        <div class="floating-particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
-                    </div>
-                    <h3>Eduardo Sochodolak</h3>
-                    <p class="team-role">Co-fundador & Desenvolvedor</p>
-                    <p>Especialista em transformar ideias complexas em soluções simples e eficazes. Eduardo combina expertise técnica com uma abordagem estratégica para entregar resultados que superam expectativas.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-photo-container">
-                        <img src="leo.png" alt="Leonardo Marconato" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="team-avatar" style="display: none;">Leo</div>
-                        <div class="floating-particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
-                    </div>
-                    <h3>Leonardo Marconato</h3>
-                    <p class="team-role">Co-fundador & Desenvolvedor</p>
-                    <p>Focado em criar experiências digitais memoráveis, Leonardo une criatividade e tecnologia para desenvolver soluções que realmente fazem a diferença no mercado.</p>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Nossa Equipe</h2>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-photo-container">
+              <img
+                src="du.png"
+                alt="Eduardo Sochodolak"
+                class="team-photo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="team-avatar" style="display: none">Du</div>
+              <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+              </div>
             </div>
+            <h3>Eduardo Sochodolak</h3>
+            <p class="team-role">Co-fundador & Desenvolvedor</p>
+            <p>
+              Especialista em transformar ideias complexas em soluções simples e
+              eficazes. Eduardo combina expertise técnica com uma abordagem
+              estratégica para entregar resultados que superam expectativas.
+            </p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-container">
+              <img
+                src="leo.png"
+                alt="Leonardo Marconato"
+                class="team-photo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="team-avatar" style="display: none">Leo</div>
+              <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+              </div>
+            </div>
+            <h3>Leonardo Marconato</h3>
+            <p class="team-role">Co-fundador & Desenvolvedor</p>
+            <p>
+              Focado em criar experiências digitais memoráveis, Leonardo une
+              criatividade e tecnologia para desenvolver soluções que realmente
+              fazem a diferença no mercado.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>Vamos Trabalhar Juntos?</h2>
-                <p>Está pronto para transformar sua ideia em realidade digital? Entre em contato conosco e vamos conversar sobre como podemos ajudar seu projeto a crescer.</p>
-                <p>Oferecemos <span class="highlight">orçamentos personalizados</span> e <span class="highlight">preços humanizados</span> para cada necessidade. Sua primeira consulta é sempre gratuita!</p>
-                <a href="https://wa.me/5542999999999?text=Oi! Gostaria de falar sobre um projeto de desenvolvimento." class="cta-button">Enviar Mensagem</a>
-            </div>
+      <!-- Engrenagens Animadas -->
+      <div class="contact-gears">
+        <i class="fas fa-cog gear gear-1"></i>
+        <i class="fas fa-cog gear gear-2"></i>
+        <i class="fas fa-cog gear gear-3"></i>
+        <i class="fas fa-cog gear gear-4"></i>
+        <i class="fas fa-cog gear gear-5"></i>
+        <i class="fas fa-cog gear gear-6"></i>
+      </div>
+
+      <div class="container">
+        <div class="contact-content">
+          <h2>Vamos Trabalhar Juntos?</h2>
+          <p>
+            Está pronto para transformar sua ideia em realidade digital? Entre
+            em contato conosco e vamos conversar sobre como podemos ajudar seu
+            projeto a crescer.
+          </p>
+          <p>
+            Oferecemos
+            <span class="highlight">orçamentos personalizados</span> e
+            <span class="highlight">preços humanizados</span> para cada
+            necessidade. Sua primeira consulta é sempre gratuita!
+          </p>
+          <a
+            href="https://wa.me/5542999999999?text=Oi! Gostaria de falar sobre um projeto de desenvolvimento."
+            class="cta-button"
+            >Enviar Mensagem</a
+          >
         </div>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Codduo - Transformando ideias em realidade. Soluções digitais</p>
-        </div>
+      <div class="container">
+        <p>
+          &copy; 2025 Codduo - Transformando ideias em realidade. Soluções
+          digitais
+        </p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
