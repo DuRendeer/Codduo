@@ -251,5 +251,4 @@ function initRocketInteraction() {
     }
     
     animateTrail();
-    console.log(`Foguete interativo iniciado! Modo: ${isMobile ? 'Mobile' : 'Desktop'}`);
 }
