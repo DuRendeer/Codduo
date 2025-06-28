@@ -943,6 +943,307 @@ nav {
   color: rgba(184, 184, 184, 0.9);
 }
 
+/* ===============================================
+   REVIEWS CAROUSEL SECTION - NOVO!
+   =============================================== */
+.reviews {
+  padding: 10rem 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: rgba(45, 27, 61, 0.05);
+}
+
+.reviews::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(139, 95, 191, 0.08) 0%,
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+.reviews-container {
+  position: relative;
+  z-index: 1;
+}
+
+.reviews-carousel {
+  position: relative;
+  height: auto;
+  padding-bottom: 80px; /* espaço para hover */
+  margin-top: 4rem;
+  overflow-x: hidden; /* impede rolagem horizontal */
+  overflow-y: visible; /* permite conteúdo excedente na vertical */
+  z-index: 0; /* garantir hierarquia */
+}
+
+.reviews-track {
+  display: flex;
+  gap: 2rem;
+  animation: slideReviews 40s linear infinite;
+  transition: animation-play-state 0.3s ease;
+}
+
+.reviews-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes slideReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.review-card {
+  min-width: 350px;
+  min-height: 320px;
+  height: auto;
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid rgba(139, 95, 191, 0.2);
+  backdrop-filter: blur(15px);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--light-purple));
+  transform: scaleX(0);
+  transition: transform 0.6s ease;
+}
+
+.review-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(139, 95, 191, 0.1) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.review-card:hover::before {
+  transform: scaleX(1);
+}
+
+.review-card:hover::after {
+  opacity: 1;
+}
+
+.review-card:hover {
+  transform: translateY(10px) scale(1.03);
+  border-color: var(--accent);
+  box-shadow: 0 20px 60px rgba(139, 95, 191, 0.3);
+  z-index: 100;
+}
+
+.review-stars {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.review-text {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.review-text::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 2px solid rgba(139, 95, 191, 0.3);
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .author-avatar {
+  transform: scale(1.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(139, 95, 191, 0.5);
+}
+
+.author-info h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  transition: color 0.3s ease;
+}
+
+.author-info p {
+  color: var(--accent);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.review-card:hover .author-info h4 {
+  color: var(--accent);
+}
+
+/* Fade gradient nas laterais */
+.reviews-carousel::before,
+.reviews-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.reviews-carousel::before {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 1) 0%,
+    rgba(10, 10, 10, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.reviews-carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(24, 19, 29, 0.153) 0%,
+    rgba(22, 17, 26, 0.538) 30%,
+    transparent 100%
+  );
+}
+
+/* Indicador de pause no hover */
+.reviews-track:hover::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.7;
+  text-shadow: 0 0 20px rgba(139, 95, 191, 0.8);
+  animation: pulseIcon 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseIcon {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Responsive para o carrossel / TEM QUE ARRUMAR A RESPONSIVIDADE PRO CELULAR*/
+@media (max-width: 1024px) {
+  .review-card {
+    min-width: 320px;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  .review-card {
+    min-width: 280px;
+    min-height: 280px;
+    height: auto;
+    overflow: visible;
+    padding: 2rem;
+  }
+
+  .reviews-carousel::before,
+  .reviews-carousel::after {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card {
+    min-width: 260px;
+    min-height: 260px;
+    height: auto;
+    overflow: visible;
+    padding: 1.8rem;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
 /* Enhanced About Section */
 .about {
   padding: 10rem 0;
@@ -1022,6 +1323,10 @@ nav {
 }
 .about-text p:nth-child(4) {
   transition-delay: 0.6s;
+}
+
+.nav-links li:nth-child(6) {
+  animation-delay: 1.5s;
 }
 
 .highlight {

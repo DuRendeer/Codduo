@@ -460,6 +460,43 @@ function updateFavicon() {
 
 window.addEventListener('scroll', updateFavicon);
 
+// Enhanced Reviews Carousel Controls
+document.addEventListener('DOMContentLoaded', function () {
+    const reviewsTrack = document.querySelector('.reviews-track');
+
+    if (reviewsTrack) {
+        // Pause animation on hover for individual cards
+        const reviewCards = document.querySelectorAll('.review-card');
+
+        reviewCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                reviewsTrack.style.animationPlayState = 'paused';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                reviewsTrack.style.animationPlayState = 'running';
+            });
+        });
+
+        // Add touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        reviewsTrack.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            reviewsTrack.style.animationPlayState = 'paused';
+        });
+
+        reviewsTrack.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            setTimeout(() => {
+                reviewsTrack.style.animationPlayState = 'running';
+            }, 1000);
+        });
+    }
+});
+
+
 // Preload images for better performance
 function preloadImages() {
     const imageUrls = ['banner.jpg', 'logo.png', 'du.png', 'leo.png'];
