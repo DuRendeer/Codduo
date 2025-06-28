@@ -460,6 +460,18 @@ function updateFavicon() {
 
 window.addEventListener('scroll', updateFavicon);
 
+// Preload images for better performance
+function preloadImages() {
+    const imageUrls = ['banner.jpg', 'logo.png', 'du.png', 'leo.png'];
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
+preloadImages();
+
+
 // Enhanced Reviews Carousel Controls
 document.addEventListener('DOMContentLoaded', function () {
     const reviewsTrack = document.querySelector('.reviews-track');
@@ -495,15 +507,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-
-// Preload images for better performance
-function preloadImages() {
-    const imageUrls = ['banner.jpg', 'logo.png', 'du.png', 'leo.png'];
-    imageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
-    });
-}
-
-preloadImages();

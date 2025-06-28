@@ -3,21 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codduo - Soluções Digitais</title>
+    <title>Codduo - Desenvolvimento de Apps, Sites e Automações | Prudentópolis, PR</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Codduo - Desenvolvimento de aplicativos mobile, sites responsivos e automações digitais. Eduardo Sochodolak e Leonardo Marconato. Soluções tecnológicas em Prudentópolis, PR." />
+    <meta name="keywords" content="desenvolvimento de apps, criação de sites, automação, app mobile, site responsivo, Prudentópolis, Paraná, React Native, Flutter, Next.js, codduo" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Codduo - Eduardo Sochodolak, Leonardo Marconato" />
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="BR-PR" />
+    <meta name="geo.placename" content="Prudentópolis" />
+    <meta name="geo.position" content="-25.2133;-51.0128" />
+    <meta name="ICBM" content="-25.2133, -51.0128" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Codduo - Desenvolvimento de Apps, Sites e Automações" />
+    <meta property="og:description" content="Transformamos ideias em realidade digital. Apps, sites e automações que fazem a diferença." />
+    <meta property="og:image" content="https://codduo.dev/banner.jpg" />
+    <meta property="og:url" content="https://codduo.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Codduo" />
+    <meta property="business:contact_data:locality" content="Prudentópolis" />
+    <meta property="business:contact_data:region" content="Paraná" />
+    <meta property="business:contact_data:country_name" content="Brasil" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Codduo - Soluções Digitais" />
+    <meta name="twitter:description" content="Desenvolvimento de apps, sites e automações em Prudentópolis, PR" />
+    <meta name="twitter:image" content="https://codduo.dev/banner.jpg" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Raster:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
+    <!-- Font Awesome para as engrenagens -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
 
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="logo.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://codduo.dev" />
   </head>
   <body>
     <!-- Loading Screen -->
@@ -30,7 +66,7 @@
         <a href="#home" class="logo">
           <img
             src="logo.png"
-            alt="Codduo Logo"
+            alt="Codduo Logo - Desenvolvimento de Apps e Sites"
             onerror="this.style.display='none'"
           />
           <span class="logo-text">Codduo</span>
@@ -38,7 +74,7 @@
         <ul class="nav-links">
           <li><a href="#home">Início</a></li>
           <li><a href="#services">Serviços</a></li>
-          <li><a href="#reviews">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
           <li><a href="#about">Sobre</a></li>
           <li><a href="#team">Equipe</a></li>
           <li><a href="#contact">Contato</a></li>
@@ -53,7 +89,7 @@
         <ul>
           <li><a href="#home" onclick="closeMobileMenu()">Início</a></li>
           <li><a href="#services" onclick="closeMobileMenu()">Serviços</a></li>
-          <li><a href="#reviews" onclick="closeMobileMenu()">Reviews</a></li>
+          <li><a href="#portfolio" onclick="closeMobileMenu()">Portfólio</a></li>
           <li><a href="#about" onclick="closeMobileMenu()">Sobre</a></li>
           <li><a href="#team" onclick="closeMobileMenu()">Equipe</a></li>
           <li><a href="#contact" onclick="closeMobileMenu()">Contato</a></li>
@@ -61,96 +97,97 @@
       </div>
     </header>
 
-    <section id="home" class="hero">
-      <!-- Banner Background -->
-      <div class="hero-banner">
-        <img src="banner.jpg" alt="Banner Codduo" class="banner-image" />
-      </div>
-
-      <!-- Parallax Layers -->
-      <div class="parallax-container">
-        <div class="parallax-layer parallax-bg"></div>
-        <div class="parallax-layer parallax-shapes">
-          <div class="floating-shape shape-1"></div>
-          <div class="floating-shape shape-2"></div>
-          <div class="floating-shape shape-3"></div>
-          <div class="floating-shape shape-4"></div>
-          <div class="floating-shape shape-5"></div>
+    <main>
+      <section id="home" class="hero">
+        <!-- Banner Background -->
+        <div class="hero-banner">
+          <img src="banner.jpg" alt="Banner Codduo - Desenvolvimento Digital" class="banner-image" />
         </div>
-      </div>
 
-      <!-- Partículas -->
-      <div class="hero-particles">
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-        <div class="hero-particle"></div>
-      </div>
-
-      <div class="container">
-        <div class="hero-content">
-          <h1>Soluções Digitais</h1>
-          <p class="subtitle">
-            Transformamos ideias em realidade digital. Desenvolvemos
-            aplicativos, sites e automações que resolvem problemas reais com
-            tecnologia de ponta e atendimento humanizado.
-          </p>
-          <a
-            href="https://wa.me/554298547169?text=Oi! Gostaria de conversar sobre soluções digitais para meu projeto."
-            class="cta-button"
-            >Vamos Conversar</a
-          >
-        </div>
-      </div>
-
-      <div class="scroll-indicator"></div>
-    </section>
-
-    <section id="services" class="services">
-      <div class="container">
-        <h2 class="section-title">Nossos Serviços</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">📱</div>
-            <h3>Desenvolvimento de Apps</h3>
-            <p>
-              Criamos aplicativos mobile nativos e híbridos que conectam sua
-              empresa aos seus clientes. Do conceito à publicação, cuidamos de
-              cada detalhe para entregar uma experiência excepcional.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🌐</div>
-            <h3>Criação de Sites</h3>
-            <p>
-              Desenvolvemos sites responsivos, rápidos e otimizados para SEO.
-              Desde landing pages até e-commerces complexos, criamos presenças
-              digitais que convertem visitantes em clientes.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">⚡</div>
-            <h3>Automações</h3>
-            <p>
-              Automatizamos processos repetitivos para aumentar a eficiência do
-              seu negócio. Integrações entre sistemas, chatbots inteligentes e
-              workflows que economizam tempo e recursos.
-            </p>
+        <!-- Parallax Layers -->
+        <div class="parallax-container">
+          <div class="parallax-layer parallax-bg"></div>
+          <div class="parallax-layer parallax-shapes">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ===============================================
-     Reviews
+        <!-- Partículas originais mantidas -->
+        <div class="hero-particles">
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+          <div class="hero-particle"></div>
+        </div>
+
+        <div class="container">
+          <div class="hero-content">
+            <h1>Soluções Digitais</h1>
+            <p class="subtitle">
+              Transformamos ideias em realidade digital. Desenvolvemos
+              aplicativos, sites e automações que resolvem problemas reais com
+              tecnologia de ponta e atendimento humanizado.
+            </p>
+            <a
+              href="https://wa.me/554298547169?text=Oi! Gostaria de conversar sobre soluções digitais para meu projeto."
+              class="cta-button"
+              >Vamos Conversar</a
+            >
+          </div>
+        </div>
+
+        <div class="scroll-indicator"></div>
+      </section>
+
+      <section id="services" class="services">
+        <div class="container">
+          <h2 class="section-title">Nossos Serviços</h2>
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">📱</div>
+              <h3>Desenvolvimento de Apps</h3>
+              <p>
+                Criamos aplicativos mobile nativos e híbridos que conectam sua
+                empresa aos seus clientes. Do conceito à publicação, cuidamos de
+                cada detalhe para entregar uma experiência excepcional.
+              </p>
+            </article>
+            <article class="service-card">
+              <div class="service-icon">🌐</div>
+              <h3>Criação de Sites</h3>
+              <p>
+                Desenvolvemos sites responsivos, rápidos e otimizados para SEO.
+                Desde landing pages até e-commerces complexos, criamos presenças
+                digitais que convertem visitantes em clientes.
+              </p>
+            </article>
+            <article class="service-card">
+              <div class="service-icon">⚡</div>
+              <h3>Automações</h3>
+              <p>
+                Automatizamos processos repetitivos para aumentar a eficiência do
+                seu negócio. Integrações entre sistemas, chatbots inteligentes e
+                workflows que economizam tempo e recursos.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+          <!-- ===============================================
+     NOVA SEÇÃO DE REVIEWS CAROUSEL
      =============================================== -->
     <section id="reviews" class="reviews">
       <div class="container reviews-container">
@@ -206,72 +243,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- Review 4 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 5 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 6 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 7 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 8 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
+            
             <!-- Duplicatas para loop infinito -->
                <!-- Review 1 -->
             <div class="review-card">
@@ -335,193 +307,534 @@
                 </div>
               </div>
             </div>
-
-              <!-- Review 5 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 6 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 7 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Review 8 -->
-            <div class="review-card">
-              <div class="review-stars">⭐⭐⭐⭐⭐</div>
-              <div class="review-text">Mensagem de avaliação</div>
-              <div class="review-author">
-                <div class="author-avatar">NN</div>
-                <div class="author-info">
-                  <h4>Nome do cliente</h4>
-                  <p>Cargo1, Cargo2</p>
-                </div>
-              </div>
-            </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>Nossa Filosofia</h2>
-            <p>
-              Na Codduo, acreditamos que
-              <span class="highlight"
-                >tecnologia deve ser acessível e humanizada</span
-              >. Não somos apenas uma empresa de desenvolvimento - somos
-              parceiros na jornada digital dos nossos clientes.
-            </p>
-
-            <p>
-              Cada projeto começa com uma
-              <span class="highlight">conversa genuína</span> para entender não
-              apenas o que você precisa, mas por que precisa. Oferecemos preços
-              justos e transparentes, porque acreditamos que boas soluções
-              digitais devem estar ao alcance de todos.
-            </p>
-
-            <p>
-              Nossa missão é
-              <span class="highlight">resolver problemas reais</span> através da
-              tecnologia, criando soluções que fazem a diferença no dia a dia
-              das pessoas e empresas.
-            </p>
-          </div>
-          <div class="about-visual">
-            <div class="space-container" id="spaceContainer">
-              <div class="stars"></div>
-              <div class="stars2"></div>
-              <div class="stars3"></div>
-              <div class="rocket" id="rocket">🚀</div>
-              <canvas id="trailCanvas" width="300" height="300"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="team" class="team">
-      <div class="container">
-        <h2 class="section-title">Nossa Equipe</h2>
-        <div class="team-grid">
-          <div class="team-card">
-            <div class="team-photo-container">
-              <img
-                src="du.png"
-                alt="Eduardo Sochodolak"
-                class="team-photo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="team-avatar" style="display: none">Du</div>
-              <div class="floating-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-              </div>
-            </div>
-            <h3>Eduardo Sochodolak</h3>
-            <p class="team-role">Co-fundador & Desenvolvedor</p>
-            <p>
-              Especialista em transformar ideias complexas em soluções simples e
-              eficazes. Eduardo combina expertise técnica com uma abordagem
-              estratégica para entregar resultados que superam expectativas.
-            </p>
-          </div>
-          <div class="team-card">
-            <div class="team-photo-container">
-              <img
-                src="leo.png"
-                alt="Leonardo Marconato"
-                class="team-photo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="team-avatar" style="display: none">Leo</div>
-              <div class="floating-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-              </div>
-            </div>
-            <h3>Leonardo Marconato</h3>
-            <p class="team-role">Co-fundador & Desenvolvedor</p>
-            <p>
-              Focado em criar experiências digitais memoráveis, Leonardo une
-              criatividade e tecnologia para desenvolver soluções que realmente
-              fazem a diferença no mercado.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="contact-gears">
-        <i class="fas fa-cog gear gear-1"></i>
-        <i class="fas fa-cog gear gear-2"></i>
-        <i class="fas fa-cog gear gear-3"></i>
-        <i class="fas fa-cog gear gear-4"></i>
-        <i class="fas fa-cog gear gear-5"></i>
-        <i class="fas fa-cog gear gear-6"></i>
-      </div>
-
-      <div class="container">
-        <div class="contact-content">
-          <h2>Vamos Trabalhar Juntos?</h2>
-          <p>
-            Está pronto para transformar sua ideia em realidade digital? Entre
-            em contato conosco e vamos conversar sobre como podemos ajudar seu
-            projeto a crescer.
+      <!-- Nova Seção de Portfolio -->
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <h2 class="section-title">Nossos Projetos</h2>
+          <p class="section-subtitle">
+            Cada linha de código conta uma história. Conheça os projetos que transformaram 
+            ideias em soluções digitais reais e impactantes.
           </p>
-          <p>
-            Oferecemos
-            <span class="highlight">orçamentos personalizados</span> e
-            <span class="highlight">preços humanizados</span> para cada
-            necessidade. Entre em contato conosco agora mesmo!
-          </p>
-          <a
-            href="https://wa.me/554298547169?text=Oi! Gostaria de falar sobre um projeto de desenvolvimento."
-            class="cta-button"
-            >Enviar Mensagem</a
-          >
+
+          <!-- Filter Buttons -->
+          <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="app">Apps Mobile</button>
+            <button class="filter-btn" data-filter="website">Sites</button>
+            <button class="filter-btn" data-filter="automation">Automações</button>
+          </div>
+
+          <!-- Portfolio Grid -->
+          <div class="portfolio-grid">
+            <!-- App Mobile Project -->
+            <article class="portfolio-item" data-category="app">
+              <div class="portfolio-preview">
+                <div class="code-preview">
+                  <pre><code class="language-javascript">// TaskManager App - React Native
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+
+const TaskManager = () => {
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await api.get('/tasks');
+      setTasks(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Erro ao buscar tasks:', error);
+    }
+  };
+
+  const toggleTask = (id) => {
+    setTasks(tasks.map(task => 
+      task.id === id 
+        ? { ...task, completed: !task.completed }
+        : task
+    ));
+  };
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.title}&gt;Minhas Tarefas&lt;/Text&gt;
+      &lt;FlatList
+        data={tasks}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          &lt;TouchableOpacity onPress={() => toggleTask(item.id)}&gt;
+            &lt;Text style={styles.taskText}&gt;{item.title}&lt;/Text&gt;
+          &lt;/TouchableOpacity&gt;
+        )}
+      /&gt;
+    &lt;/View&gt;
+  );
+};</code></pre>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>TaskManager App</h3>
+                <p>Aplicativo de gerenciamento de tarefas desenvolvido em React Native com sincronização em tempo real e notificações push personalizadas.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">React Native</span>
+                  <span class="portfolio-tag">Firebase</span>
+                  <span class="portfolio-tag">Push Notifications</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Quero saber mais sobre o TaskManager App!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-code"></i>
+                    Ver Código
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Website Project -->
+            <article class="portfolio-item" data-category="website">
+              <div class="portfolio-preview">
+                <div class="website-preview">
+                  <i class="fas fa-globe"></i>
+                  <h4>E-commerce Moderno</h4>
+                  <p>Interface responsiva e otimizada</p>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Loja Virtual Completa</h3>
+                <p>E-commerce desenvolvido com Next.js, sistema de pagamento integrado, painel administrativo e otimizado para SEO e conversões.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">Next.js</span>
+                  <span class="portfolio-tag">Stripe</span>
+                  <span class="portfolio-tag">SEO</span>
+                  <span class="portfolio-tag">Analytics</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Interessado no projeto de e-commerce!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-external-link-alt"></i>
+                    Ver Site
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Automation Project -->
+            <article class="portfolio-item" data-category="automation">
+              <div class="portfolio-preview">
+                <div class="code-preview">
+                  <pre><code class="language-python"># Automação de Relatórios - Python
+import pandas as pd
+import smtplib
+from datetime import datetime, timedelta
+
+class ReportAutomation:
+    def __init__(self, database_url, email_config):
+        self.db_url = database_url
+        self.email_config = email_config
+    
+    def generate_daily_report(self):
+        # Conecta ao banco de dados
+        df = pd.read_sql_query("""
+            SELECT 
+                DATE(created_at) as data,
+                COUNT(*) as total_vendas,
+                SUM(valor) as receita_total,
+                AVG(valor) as ticket_medio
+            FROM vendas 
+            WHERE created_at >= %s
+            GROUP BY DATE(created_at)
+        """, self.db_url, params=[datetime.now() - timedelta(days=1)])
+        
+        # Gera gráficos e análises
+        insights = self.analyze_data(df)
+        
+        # Envia relatório por email
+        self.send_email_report(insights)
+        
+        return "Relatório enviado com sucesso!"
+    
+    def analyze_data(self, df):
+        return {
+            'vendas_hoje': df['total_vendas'].sum(),
+            'crescimento': self.calculate_growth(df),
+            'top_produtos': self.get_top_products()
+        }</code></pre>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Sistema de Relatórios Automáticos</h3>
+                <p>Automação completa para geração e envio de relatórios de vendas, com análises inteligentes e insights em tempo real.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">Python</span>
+                  <span class="portfolio-tag">Pandas</span>
+                  <span class="portfolio-tag">Cron Jobs</span>
+                  <span class="portfolio-tag">Email API</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Quero automatizar meus relatórios!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-robot"></i>
+                    Ver Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- App Flutter -->
+            <article class="portfolio-item" data-category="app">
+              <div class="portfolio-preview">
+                <div class="code-preview">
+                  <pre><code class="language-dart">// Flutter Delivery App
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+class DeliveryTracker extends StatefulWidget {
+  @override
+  _DeliveryTrackerState createState() => _DeliveryTrackerState();
+}
+
+class _DeliveryTrackerState extends State&lt;DeliveryTracker&gt; {
+  Position? currentPosition;
+  
+  @override
+  void initState() {
+    super.initState();
+    getCurrentLocation();
+  }
+
+  Future&lt;void&gt; getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high
+      );
+      
+      setState(() {
+        currentPosition = position;
+      });
+    } catch (e) {
+      print('Erro ao obter localização: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Rastreamento de Entrega'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: currentPosition == null
+        ? Center(child: CircularProgressIndicator())
+        : GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: LatLng(
+                currentPosition!.latitude, 
+                currentPosition!.longitude
+              ),
+              zoom: 15.0,
+            ),
+          ),
+    );
+  }
+}</code></pre>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>App de Delivery com GPS</h3>
+                <p>Aplicativo completo de delivery desenvolvido em Flutter com rastreamento em tempo real, sistema de pagamentos e notificações push.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">Flutter</span>
+                  <span class="portfolio-tag">Google Maps</span>
+                  <span class="portfolio-tag">Real-time</span>
+                  <span class="portfolio-tag">GPS</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Interessado no app de delivery!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-mobile-alt"></i>
+                    Ver App
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- ChatBot Project -->
+            <article class="portfolio-item" data-category="automation">
+              <div class="portfolio-preview">
+                <div class="automation-preview">
+                  <i class="fas fa-robot"></i>
+                  <h4>ChatBot Inteligente</h4>
+                  <p>IA conversacional para atendimento</p>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>ChatBot de Atendimento com IA</h3>
+                <p>Sistema de chatbot inteligente integrado ao WhatsApp Business, com processamento de linguagem natural e aprendizado contínuo.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">Node.js</span>
+                  <span class="portfolio-tag">OpenAI</span>
+                  <span class="portfolio-tag">WhatsApp API</span>
+                  <span class="portfolio-tag">NLP</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Quero um chatbot para meu negócio!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-comments"></i>
+                    Testar Bot
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dashboard Website -->
+            <article class="portfolio-item" data-category="website">
+              <div class="portfolio-preview">
+                <div class="code-preview">
+                  <pre><code class="language-javascript">// Dashboard Analytics - React
+import React, { useState, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+
+const AnalyticsDashboard = () => {
+  const [metrics, setMetrics] = useState({
+    totalUsers: 0,
+    conversionRate: 0,
+    revenue: 0,
+    growth: 0
+  });
+
+  useEffect(() => {
+    fetchMetrics();
+  }, []);
+
+  const fetchMetrics = async () => {
+    try {
+      const response = await fetch('/api/metrics/summary');
+      const data = await response.json();
+      setMetrics(data);
+    } catch (error) {
+      console.error('Erro ao buscar métricas:', error);
+    }
+  };
+
+  return (
+    &lt;div className="dashboard-container"&gt;
+      &lt;div className="metrics-grid"&gt;
+        &lt;div className="metric-card"&gt;
+          &lt;h3&gt;Usuários Ativos&lt;/h3&gt;
+          &lt;p className="metric-value"&gt;
+            {metrics.totalUsers.toLocaleString()}
+          &lt;/p&gt;
+          &lt;span className="metric-growth"&gt;
+            +{metrics.growth}%
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};</code></pre>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Dashboard Analytics Avançado</h3>
+                <p>Painel administrativo completo com métricas em tempo real, gráficos interativos e relatórios personalizados para tomada de decisões.</p>
+                <div class="portfolio-tags">
+                  <span class="portfolio-tag">React</span>
+                  <span class="portfolio-tag">D3.js</span>
+                  <span class="portfolio-tag">Real-time</span>
+                  <span class="portfolio-tag">Analytics</span>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="https://wa.me/554298547169?text=Quero um dashboard para minha empresa!" class="portfolio-btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Saber Mais
+                  </a>
+                  <a href="#" class="portfolio-btn btn-secondary">
+                    <i class="fas fa-chart-line"></i>
+                    Ver Demo
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Call to Action do Portfolio -->
+          <div class="portfolio-cta">
+            <div class="cta-content">
+              <h3>Tem um projeto em mente?</h3>
+              <p>Vamos conversar sobre como transformar sua ideia em realidade digital!</p>
+              <a href="https://wa.me/554298547169?text=Oi! Tenho um projeto e gostaria de conversar!" class="cta-button">
+                <i class="fab fa-whatsapp"></i>
+                Falar no WhatsApp
+              </a>
+              <div class="social-follow">
+                <span>Acompanhe nossos projetos:</span>
+                <a href="https://instagram.com/codduo.dev" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                  <i class="fab fa-instagram"></i>
+                  @codduo.dev
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <h2>Nossa Filosofia</h2>
+              <p>
+                Na Codduo, acreditamos que
+                <span class="highlight"
+                  >tecnologia deve ser acessível e humanizada</span
+                >. Não somos apenas uma empresa de desenvolvimento - somos
+                parceiros na jornada digital dos nossos clientes.
+              </p>
+
+              <p>
+                Cada projeto começa com uma
+                <span class="highlight">conversa genuína</span> para entender não
+                apenas o que você precisa, mas por que precisa. Oferecemos preços
+                justos e transparentes, porque acreditamos que boas soluções
+                digitais devem estar ao alcance de todos.
+              </p>
+
+              <p>
+                Nossa missão é
+                <span class="highlight">resolver problemas reais</span> através da
+                tecnologia, criando soluções que fazem a diferença no dia a dia
+                das pessoas e empresas.
+              </p>
+            </div>
+            <div class="about-visual">
+              <div class="space-container" id="spaceContainer">
+                <div class="stars"></div>
+                <div class="stars2"></div>
+                <div class="stars3"></div>
+                <div class="rocket" id="rocket">🚀</div>
+                <canvas id="trailCanvas" width="300" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="team">
+        <div class="container">
+          <h2 class="section-title">Nossa Equipe</h2>
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="team-photo-container">
+                <img
+                  src="du.png"
+                  alt="Eduardo Sochodolak - Co-fundador e Desenvolvedor da Codduo"
+                  class="team-photo"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="team-avatar" style="display: none">Du</div>
+                <div class="floating-particles">
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                </div>
+              </div>
+              <h3>Eduardo Sochodolak</h3>
+              <p class="team-role">Co-fundador & Desenvolvedor</p>
+              <p>
+                Especialista em transformar ideias complexas em soluções simples e
+                eficazes. Eduardo combina expertise técnica com uma abordagem
+                estratégica para entregar resultados que superam expectativas.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="team-photo-container">
+                <img
+                  src="leo.png"
+                  alt="Leonardo Marconato - Co-fundador e Desenvolvedor da Codduo"
+                  class="team-photo"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="team-avatar" style="display: none">Leo</div>
+                <div class="floating-particles">
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                </div>
+              </div>
+              <h3>Leonardo Marconato</h3>
+              <p class="team-role">Co-fundador & Desenvolvedor</p>
+              <p>
+                Focado em criar experiências digitais memoráveis, Leonardo une
+                criatividade e tecnologia para desenvolver soluções que realmente
+                fazem a diferença no mercado.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <!-- Engrenagens Animadas -->
+        <div class="contact-gears">
+          <i class="fas fa-cog gear gear-1"></i>
+          <i class="fas fa-cog gear gear-2"></i>
+          <i class="fas fa-cog gear gear-3"></i>
+          <i class="fas fa-cog gear gear-4"></i>
+          <i class="fas fa-cog gear gear-5"></i>
+          <i class="fas fa-cog gear gear-6"></i>
+        </div>
+
+        <div class="container">
+          <div class="contact-content">
+            <h2>Vamos Trabalhar Juntos?</h2>
+            <p>
+              Está pronto para transformar sua ideia em realidade digital? Entre
+              em contato conosco e vamos conversar sobre como podemos ajudar seu
+              projeto a crescer.
+            </p>
+            <p>
+              Oferecemos
+              <span class="highlight">orçamentos personalizados</span> e
+              <span class="highlight">preços humanizados</span> para cada
+              necessidade. Sua primeira consulta é sempre gratuita!
+            </p>
+            <a
+              href="https://wa.me/554298547169?text=Oi! Gostaria de falar sobre um projeto de desenvolvimento."
+              class="cta-button"
+              >Enviar Mensagem</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer>
       <div class="container">
