@@ -1063,11 +1063,9 @@ nav {
 
 .space-invaders-container {
   background: #000000;
-  border-radius: 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(139, 95, 191, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -1075,7 +1073,7 @@ nav {
   cursor: crosshair;
   width: 100%;
   height: 450px;
-  touch-action: none; /* Previne scroll no mobile */
+  touch-action: none;
 }
 
 .space-invaders-container:hover {
@@ -1092,7 +1090,7 @@ nav {
   height: 100%;
   max-width: 100%;
   display: block;
-  touch-action: none; /* Previne scroll no mobile */
+  touch-action: none;
 }
 
 /* Game paused overlay com fonte 8-bit */
@@ -1104,7 +1102,7 @@ nav {
   color: var(--accent);
   font-family: 'Press Start 2P', 'Courier New', monospace;
   font-size: 1.2rem;
-  font-weight: normal; /* Press Start 2P já é bold por natureza */
+  font-weight: normal;
   text-shadow: 
     0 0 10px rgba(139, 95, 191, 0.8),
     0 0 20px rgba(139, 95, 191, 0.5),
@@ -1138,16 +1136,160 @@ nav {
   opacity: 1;
 }
 
+/* Game Overlay (Game Over e Victory) */
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.game-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Game Message (GAME OVER / VICTORY) */
+.game-message {
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 3px;
+  animation: messageFlash 1.5s ease-in-out infinite;
+  color: var(--accent);
+  text-shadow: 
+    0 0 10px rgba(139, 95, 191, 0.8),
+    0 0 20px rgba(139, 95, 191, 0.5),
+    2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes messageFlash {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Reload Button 8-bit */
+.reload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  background: rgba(26, 26, 26, 0.9);
+  border: 3px solid var(--accent);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.reload-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 95, 191, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.reload-button:hover::before {
+  left: 100%;
+}
+
+.reload-button:hover {
+  background: rgba(139, 95, 191, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 6px 20px rgba(139, 95, 191, 0.4),
+    0 0 0 1px rgba(139, 95, 191, 0.5);
+}
+
+.reload-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Reload Text */
+.reload-text {
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-shadow: 
+    0 0 10px rgba(139, 95, 191, 0.6),
+    1px 1px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(139, 95, 191, 0.6),
+      1px 1px 0px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(139, 95, 191, 1),
+      0 0 30px rgba(139, 95, 191, 0.8),
+      1px 1px 0px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.reload-button:hover .reload-text {
+  color: #ffffff;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 25px rgba(139, 95, 191, 0.6),
+    1px 1px 0px rgba(0, 0, 0, 0.8);
+  animation: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .space-invaders-container {
     height: 380px;
-    cursor: pointer; /* Muda cursor no mobile */
+    cursor: pointer;
   }
   
   .game-paused {
     font-size: 1rem;
     letter-spacing: 1px;
+  }
+
+  .game-message {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .reload-button {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .reload-text {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
   }
 }
 
@@ -1160,6 +1302,20 @@ nav {
     font-size: 0.8rem;
     letter-spacing: 1px;
   }
+
+  .game-message {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .reload-button {
+    padding: 1rem 1.2rem;
+  }
+
+  .reload-text {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
 }
 
 /* Fallback para caso a fonte não carregue */
@@ -1170,7 +1326,9 @@ nav {
 }
 
 /* Estilo alternativo caso Press Start 2P não carregue */
-.game-paused {
+.game-paused,
+.game-message,
+.reload-button {
   font-family: 'Press Start 2P', 'Pixel', 'Courier New', 'Monaco', 'Menlo', monospace;
 }
 
@@ -1184,6 +1342,35 @@ nav {
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
+  }
+
+  .reload-button:active {
+    transform: translateY(0) scale(0.95);
+    background: rgba(139, 95, 191, 0.3);
+  }
+}
+
+/* Efeitos especiais para Victory e Game Over - agora ambos roxos */
+.game-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(139, 95, 191, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 95, 191, 0.1) 0%, transparent 50%);
+  animation: overlayGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes overlayGlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
   }
 }
 
@@ -2833,12 +3020,10 @@ footer .container {
 .space-container {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   height: 400px;
-  border-radius: 20px;
   position: relative;
   overflow: hidden;
   cursor: crosshair;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(139, 95, 191, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
