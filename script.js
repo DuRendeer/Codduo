@@ -53,13 +53,9 @@ window.addEventListener('scroll', () => {
     }
 
     // Parallax layers
-    const parallaxBg = document.querySelector('.parallax-bg');
+    // const parallaxBg = document.querySelector('.parallax-bg'); Isn't working anymore
     const parallaxShapes = document.querySelector('.parallax-shapes');
     const bannerImage = document.querySelector('.banner-image');
-
-    if (parallaxBg) {
-        parallaxBg.style.transform = `translate3d(0, ${rate}px, 0)`;
-    }
 
     if (parallaxShapes) {
         parallaxShapes.style.transform = `translate3d(0, ${rateShapes}px, 0) rotate(${scrolled * 0.05}deg)`;
@@ -424,6 +420,7 @@ function updateAnimations() {
     const footer = document.querySelector('footer');
     if (footer) {
         footer.style.display = 'block';
+        footer.style.textAlign = 'center';
         footer.style.visibility = 'visible';
     }
 
@@ -443,6 +440,7 @@ window.addEventListener('load', () => {
         const footer = document.querySelector('footer');
         if (footer) {
             footer.style.display = 'block';
+            footer.style.textAlign = 'center';
             footer.style.visibility = 'visible';
             footer.style.opacity = '1';
         }
