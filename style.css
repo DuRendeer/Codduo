@@ -2684,13 +2684,60 @@ footer .container {
   z-index: 100;
 }
 
+.review-card:hover .review-stars i {
+  color: #ffed4e;
+  text-shadow: 
+    0 0 12px rgba(255, 215, 0, 0.6),
+    0 0 20px rgba(255, 215, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.review-stars i:nth-child(1) { animation-delay: 0.1s; }
+.review-stars i:nth-child(2) { animation-delay: 0.2s; }
+.review-stars i:nth-child(3) { animation-delay: 0.3s; }
+.review-stars i:nth-child(4) { animation-delay: 0.4s; }
+.review-stars i:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes starTwinkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Animação de entrada quando o card entra no hover */
+.review-card:hover .review-stars i {
+  animation: starTwinkle 0.6s ease-in-out;
+}
+
 .review-stars {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.2rem;
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  align-items: center;
+}
+
+.review-stars i {
   color: #ffd700;
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.review-stars .fas.fa-star {
+  color: #ffd700;
+}
+
+.review-stars .fas.fa-star-half-alt {
+  color: #ffd700;
+}
+
+.review-stars .far.fa-star {
+  color: rgba(255, 215, 0, 0.3);
 }
 
 .review-text {
