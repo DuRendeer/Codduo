@@ -146,8 +146,7 @@ window.addEventListener('load', () => {
         observer.observe(footer);
     }
 
-    // Initialize rocket interaction after page loads
-    initRocketInteraction();
+    initSimpleSpaceInvaders();
 
     // Add scroll-triggered micro animations
     initMicroAnimations();
@@ -209,195 +208,7 @@ function initMicroAnimations() {
 }
 
 // Enhanced rocket interaction (mantido original mas com melhorias)
-function initRocketInteraction() {
-    const spaceContainer = document.getElementById('spaceContainer');
-    const rocket = document.getElementById('rocket');
-    const canvas = document.getElementById('trailCanvas');
 
-    if (!spaceContainer || !rocket || !canvas) {
-        console.log('Elementos não encontrados!');
-        return;
-    }
-
-    const ctx = canvas.getContext('2d');
-
-    let trail = [];
-    let isMouseInside = false;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-
-    // Mobile detection
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-
-    // Mobile movement variables
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 30;
-    let currentY = 150;
-    let isMovingToTarget = false;
-
-    // Set canvas size
-    function resizeCanvas() {
-        const rect = spaceContainer.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-    }
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    spaceContainer.addEventListener('mouseenter', () => {
-        if (!isMobile) {
-            isMouseInside = true;
-            console.log('Mouse entrou na área espacial!');
-        }
-    });
-
-    spaceContainer.addEventListener('mouseleave', () => {
-        if (!isMobile) {
-            isMouseInside = false;
-            trail = [];
-            console.log('Mouse saiu da área espacial!');
-        }
-    });
-
-    // Desktop: mouse move
-    spaceContainer.addEventListener('mousemove', (e) => {
-        if (isMobile || !isMouseInside) return;
-
-        const rect = spaceContainer.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        // Move rocket to mouse position with smooth transition
-        rocket.style.left = (mouseX - 20) + 'px';
-        rocket.style.top = (mouseY - 20) + 'px';
-
-        // Calculate rotation angle with enhanced smoothness
-        if (lastMouseX !== 0 || lastMouseY !== 0) {
-            const deltaX = mouseX - lastMouseX;
-            const deltaY = mouseY - lastMouseY;
-            const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-            rocket.style.transform = `rotate(${angle + 90}deg) scale(1.1)`;
-        }
-
-        // Enhanced trail with multiple colors
-        trail.push({
-            x: mouseX,
-            y: mouseY,
-            opacity: 1,
-            size: 4,
-            hue: (Date.now() / 10) % 360
-        });
-
-        if (trail.length > 20) {
-            trail.shift();
-        }
-
-        lastMouseX = mouseX;
-        lastMouseY = mouseY;
-    });
-
-    // Mobile: touch/click
-    spaceContainer.addEventListener('click', (e) => {
-        if (!isMobile) return;
-
-        const rect = spaceContainer.getBoundingClientRect();
-        targetX = e.clientX - rect.left;
-        targetY = e.clientY - rect.top;
-        isMovingToTarget = true;
-
-        console.log(`Foguete indo para: ${targetX}, ${targetY}`);
-    });
-
-    // Mobile rocket movement animation
-    function animateRocketMovement() {
-        if (isMobile && isMovingToTarget) {
-            const deltaX = targetX - currentX;
-            const deltaY = targetY - currentY;
-            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-            if (distance > 5) {
-                const speed = 4;
-                const moveX = (deltaX / distance) * speed;
-                const moveY = (deltaY / distance) * speed;
-
-                currentX += moveX;
-                currentY += moveY;
-
-                rocket.style.left = (currentX - 20) + 'px';
-                rocket.style.top = (currentY - 20) + 'px';
-
-                const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-                rocket.style.transform = `rotate(${angle + 90}deg) scale(1.1)`;
-
-                // Enhanced mobile trail
-                trail.push({
-                    x: currentX,
-                    y: currentY,
-                    opacity: 1,
-                    size: 4,
-                    hue: (Date.now() / 10) % 360
-                });
-
-                if (trail.length > 25) {
-                    trail.shift();
-                }
-            } else {
-                isMovingToTarget = false;
-                rocket.style.transform = `rotate(0deg) scale(1)`;
-                console.log('Foguete chegou ao destino!');
-            }
-        }
-
-        requestAnimationFrame(animateRocketMovement);
-    }
-
-    animateRocketMovement();
-
-    // Enhanced trail animation
-    function animateTrail() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (let i = 0; i < trail.length; i++) {
-            const point = trail[i];
-
-            point.opacity -= isMobile ? 0.03 : 0.04;
-            point.size *= 0.96;
-
-            if (point.opacity > 0) {
-                // Create colorful gradient trail
-                const gradient = ctx.createRadialGradient(
-                    point.x, point.y, 0,
-                    point.x, point.y, point.size * 3
-                );
-
-                const color = `hsl(${280 + Math.sin(point.hue) * 30}, 70%, 60%)`;
-                gradient.addColorStop(0, `${color.replace('rgb', 'rgba').replace(')', `, ${point.opacity})`)})`);
-                gradient.addColorStop(0.5, `rgba(139, 95, 191, ${point.opacity * 0.6})`);
-                gradient.addColorStop(1, 'transparent');
-
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(point.x, point.y, point.size * 3, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Add sparkle effect
-                if (Math.random() > 0.7) {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${point.opacity * 0.8})`;
-                    ctx.beginPath();
-                    ctx.arc(point.x + Math.random() * 10 - 5, point.y + Math.random() * 10 - 5, 1, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-        }
-
-        trail = trail.filter(point => point.opacity > 0);
-        requestAnimationFrame(animateTrail);
-    }
-
-    animateTrail();
-}
 
 // Enhanced scroll-based animations
 let ticking = false;
@@ -465,6 +276,434 @@ function preloadImages() {
         const img = new Image();
         img.src = url;
     });
+}
+
+
+
+function initSimpleSpaceInvaders() {
+    const canvas = document.getElementById('gameCanvas');
+    const container = document.getElementById('spaceInvadersContainer');
+    
+    if (!canvas || !container) {
+        console.log('Canvas ou container não encontrado');
+        return;
+    }
+
+    // Criar e adicionar o overlay de pause se não existir
+    let pausedOverlay = document.getElementById('gamePaused');
+    if (!pausedOverlay) {
+        pausedOverlay = document.createElement('div');
+        pausedOverlay.id = 'gamePaused';
+        pausedOverlay.className = 'game-paused visible';
+        pausedOverlay.innerHTML = 'CODDUO INVADERS';
+        container.appendChild(pausedOverlay);
+    } else {
+        pausedOverlay.innerHTML = 'CODDUO INVADERS';
+    }
+
+    try {
+        const game = new SimpleSpaceInvaders(canvas);
+        console.log('Space Invaders iniciado com sucesso');
+    } catch (error) {
+        console.error('Erro ao inicializar Space Invaders:', error);
+    }
+}
+
+class SimpleSpaceInvaders {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.container = document.getElementById('spaceInvadersContainer');
+        this.pausedOverlay = document.getElementById('gamePaused');
+        
+        if (!this.ctx) {
+            throw new Error('Não foi possível obter contexto 2D do canvas');
+        }
+        
+        this.gameActive = false;
+        this.mouseX = canvas.width / 2;
+        this.mouseY = canvas.height / 2;
+        this.mouseInCanvas = false;
+        this.isTouching = false;
+        this.lastTouchMove = 0;
+        
+        // Player
+        this.player = {
+            x: canvas.width / 2,
+            y: canvas.height - 60,
+            targetX: canvas.width / 2,
+            size: 24,
+            hitbox: 20
+        };
+        
+        // Bullets
+        this.bullets = [];
+        this.bulletSpeed = 6;
+        this.lastShot = 0;
+        this.shootCooldown = 300; // 300ms entre tiros
+        
+        // Invaders
+        this.invaders = [];
+        this.invaderSpeed = 0.3;
+        this.invaderDirection = 1;
+        
+        // Animation
+        this.animationFrame = 0;
+        
+        this.setupControls();
+        this.resizeCanvas();
+        this.createInvaders();
+        this.gameLoop();
+    }
+    
+    resizeCanvas() {
+        const rect = this.container.getBoundingClientRect();
+        this.canvas.width = Math.max(rect.width - 4, 400);
+        this.canvas.height = Math.max(rect.height - 4, 400);
+        
+        // Reset player position
+        this.player.x = this.canvas.width / 2;
+        this.player.y = this.canvas.height - 60;
+        this.player.targetX = this.canvas.width / 2;
+    }
+    
+    setupControls() {
+        // Desktop: Mouse enter/leave for game activation
+        this.container.addEventListener('mouseenter', () => {
+            if (!this.isTouching) { // Só ativa por mouse se não estiver tocando
+                this.mouseInCanvas = true;
+                this.gameActive = true;
+                if (this.pausedOverlay) {
+                    this.pausedOverlay.classList.remove('visible');
+                }
+            }
+        });
+        
+        this.container.addEventListener('mouseleave', () => {
+            if (!this.isTouching) { // Só desativa por mouse se não estiver tocando
+                this.mouseInCanvas = false;
+                this.gameActive = false;
+                if (this.pausedOverlay) {
+                    this.pausedOverlay.classList.add('visible');
+                }
+                this.player.targetX = this.canvas.width / 2;
+            }
+        });
+        
+        // Desktop: Mouse movement
+        this.canvas.addEventListener('mousemove', (e) => {
+            if (!this.gameActive || this.isTouching) return;
+            const rect = this.canvas.getBoundingClientRect();
+            this.mouseX = e.clientX - rect.left;
+            this.mouseY = e.clientY - rect.top;
+            this.player.targetX = this.mouseX;
+        });
+        
+        // Desktop: Mouse click to shoot
+        this.canvas.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.gameActive && !this.isTouching) this.shoot();
+        });
+        
+        // Mobile: Touch controls melhorados
+        this.canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.isTouching = true;
+            this.mouseInCanvas = true;
+            this.gameActive = true;
+            
+            if (this.pausedOverlay) {
+                this.pausedOverlay.classList.remove('visible');
+            }
+            
+            const rect = this.canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            this.mouseX = touch.clientX - rect.left;
+            this.mouseY = touch.clientY - rect.top;
+            this.player.targetX = this.mouseX;
+            
+            // Primeiro toque atira
+            this.shoot();
+        });
+        
+        this.canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (!this.gameActive || !this.isTouching) return;
+            
+            const rect = this.canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            this.mouseX = touch.clientX - rect.left;
+            this.mouseY = touch.clientY - rect.top;
+            this.player.targetX = this.mouseX;
+            this.lastTouchMove = Date.now();
+        });
+        
+        this.canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            
+            // Se o usuário moveu recentemente, não atira
+            const timeSinceMove = Date.now() - this.lastTouchMove;
+            if (timeSinceMove > 100) { // Se não moveu por 100ms, considera como toque para atirar
+                this.shoot();
+            }
+        });
+        
+        // Mobile: Touch fora do canvas para pausar
+        document.addEventListener('touchstart', (e) => {
+            if (!this.canvas.contains(e.target) && !this.container.contains(e.target)) {
+                if (this.isTouching) {
+                    this.isTouching = false;
+                    this.mouseInCanvas = false;
+                    this.gameActive = false;
+                    if (this.pausedOverlay) {
+                        this.pausedOverlay.classList.add('visible');
+                    }
+                    this.player.targetX = this.canvas.width / 2;
+                }
+            }
+        });
+        
+        // Window resize
+        window.addEventListener('resize', () => {
+            this.resizeCanvas();
+            this.createInvaders();
+        });
+    }
+    
+    createInvaders() {
+        this.invaders = [];
+        const cols = Math.floor(this.canvas.width / 60);
+        const rows = 4;
+        const startX = (this.canvas.width - (cols * 50)) / 2;
+        
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                this.invaders.push({
+                    x: startX + col * 50,
+                    y: row * 40 + 40,
+                    size: 16,
+                    alive: true,
+                    type: row % 3
+                });
+            }
+        }
+    }
+    
+    shoot() {
+        const now = Date.now();
+        if (now - this.lastShot < this.shootCooldown) return; // Cooldown entre tiros
+        
+        this.bullets.push({
+            x: this.player.x,
+            y: this.player.y - 15,
+            size: 3
+        });
+        
+        this.lastShot = now;
+    }
+    
+    checkCollision(obj1, obj2, size1, size2) {
+        const distance = Math.sqrt(
+            Math.pow(obj1.x - obj2.x, 2) + 
+            Math.pow(obj1.y - obj2.y, 2)
+        );
+        return distance < (size1 + size2) / 2;
+    }
+    
+    resetGame() {
+        this.bullets = [];
+        this.createInvaders();
+        this.player.x = this.canvas.width / 2;
+        this.player.targetX = this.canvas.width / 2;
+        this.invaderSpeed = 0.3;
+    }
+    
+    update() {
+        this.animationFrame++;
+        
+        // SEMPRE move player smoothly (mesmo parado)
+        const diff = this.player.targetX - this.player.x;
+        this.player.x += diff * 0.08;
+        
+        // Keep player in bounds
+        this.player.x = Math.max(this.player.size, Math.min(this.canvas.width - this.player.size, this.player.x));
+        
+        // Only update game logic if active
+        if (!this.gameActive) return;
+        
+        // Move bullets
+        this.bullets = this.bullets.filter(bullet => {
+            bullet.y -= this.bulletSpeed;
+            return bullet.y > 0;
+        });
+        
+        // Move invaders
+        let moveDown = false;
+        let allInvadersDead = true;
+        
+        for (let invader of this.invaders) {
+            if (!invader.alive) continue;
+            
+            allInvadersDead = false;
+            invader.x += this.invaderSpeed * this.invaderDirection;
+            
+            if (invader.x <= 20 || invader.x >= this.canvas.width - 20) {
+                moveDown = true;
+            }
+            
+            if (invader.y >= this.canvas.height - 80) {
+                this.resetGame();
+                return;
+            }
+            
+            if (this.checkCollision(invader, this.player, invader.size, this.player.hitbox)) {
+                this.resetGame();
+                return;
+            }
+        }
+        
+        if (moveDown) {
+            this.invaderDirection *= -1;
+            for (let invader of this.invaders) {
+                if (invader.alive) {
+                    invader.y += 20;
+                }
+            }
+        }
+        
+        // Bullet-invader collision
+        this.bullets = this.bullets.filter(bullet => {
+            for (let invader of this.invaders) {
+                if (invader.alive && this.checkCollision(bullet, invader, bullet.size, invader.size)) {
+                    invader.alive = false;
+                    return false;
+                }
+            }
+            return true;
+        });
+        
+        // Respawn invaders if all destroyed
+        if (allInvadersDead) {
+            setTimeout(() => {
+                this.createInvaders();
+                this.invaderSpeed += 0.1;
+            }, 1000);
+        }
+    }
+    
+    drawPixelSprite(x, y, size, color, pattern) {
+        this.ctx.fillStyle = color;
+        const pixelSize = size / 8;
+        
+        for (let row = 0; row < pattern.length; row++) {
+            for (let col = 0; col < pattern[row].length; col++) {
+                if (pattern[row][col] === 1) {
+                    this.ctx.fillRect(
+                        x - (pattern[row].length * pixelSize) / 2 + col * pixelSize,
+                        y - (pattern.length * pixelSize) / 2 + row * pixelSize,
+                        pixelSize,
+                        pixelSize
+                    );
+                }
+            }
+        }
+    }
+    
+    draw() {
+        // Clear canvas with space background
+        this.ctx.fillStyle = '#000000';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // ESTRELAS SEMPRE SE MOVENDO
+        this.ctx.fillStyle = '#ffffff';
+        for (let i = 0; i < 80; i++) {
+            const x = (i * 47 + this.animationFrame * 0.3) % this.canvas.width;
+            const y = (i * 31 + this.animationFrame * 0.15) % this.canvas.height;
+            const twinkle = 0.3 + Math.sin(this.animationFrame * 0.05 + i) * 0.4;
+            this.ctx.globalAlpha = Math.max(0, twinkle);
+            this.ctx.fillRect(x, y, 1, 1);
+        }
+        this.ctx.globalAlpha = 1;
+        
+        // NAVE SEMPRE VISÍVEL NO CENTRO - COR ROXA
+        const playerPattern = [
+            [0,0,0,1,1,0,0,0],
+            [0,0,1,1,1,1,0,0],
+            [0,1,1,1,1,1,1,0],
+            [1,1,0,1,1,0,1,1],
+            [1,1,1,1,1,1,1,1],
+            [0,1,1,0,0,1,1,0],
+            [0,0,1,0,0,1,0,0]
+        ];
+        this.drawPixelSprite(this.player.x, this.player.y, this.player.size, '#8b5fbf', playerPattern);
+        
+        // Only draw game elements if active
+        if (!this.gameActive) return;
+        
+        // Draw bullets
+        this.ctx.fillStyle = '#ffff00';
+        for (let bullet of this.bullets) {
+            this.ctx.fillRect(bullet.x - bullet.size/2, bullet.y - bullet.size/2, bullet.size, bullet.size);
+        }
+        
+        // Draw invaders - COR BRANCA
+        const invaderPatterns = [
+            [
+                [0,0,1,0,0,0,1,0],
+                [0,0,0,1,1,0,0,0],
+                [0,0,1,1,1,1,0,0],
+                [0,1,0,1,1,0,1,0],
+                [1,1,1,1,1,1,1,1],
+                [1,0,1,1,1,1,0,1],
+                [1,0,1,0,0,1,0,1],
+                [0,0,0,1,1,0,0,0]
+            ],
+            [
+                [0,0,0,1,1,0,0,0],
+                [0,0,1,1,1,1,0,0],
+                [0,1,1,1,1,1,1,0],
+                [1,1,0,1,1,0,1,1],
+                [1,1,1,1,1,1,1,1],
+                [0,0,1,0,0,1,0,0],
+                [0,1,0,1,1,0,1,0],
+                [1,0,1,0,0,1,0,1]
+            ],
+            [
+                [0,0,0,0,0,0,0,0],
+                [0,0,1,1,1,1,0,0],
+                [0,1,1,1,1,1,1,0],
+                [1,1,0,1,1,0,1,1],
+                [1,1,1,1,1,1,1,1],
+                [0,1,0,1,1,0,1,0],
+                [1,0,0,0,0,0,0,1],
+                [0,1,0,0,0,0,1,0]
+            ]
+        ];
+        
+        for (let invader of this.invaders) {
+            if (invader.alive) {
+                const animOffset = Math.sin(this.animationFrame * 0.1 + invader.x * 0.1) > 0 ? 0 : 1;
+                let pattern = invaderPatterns[invader.type];
+                if (animOffset === 1) {
+                    pattern = pattern.map(row => [...row].reverse());
+                }
+                
+                this.drawPixelSprite(
+                    invader.x, 
+                    invader.y, 
+                    invader.size, 
+                    '#ffffff', // BRANCO
+                    pattern
+                );
+            }
+        }
+    }
+    
+    gameLoop() {
+        this.update();
+        this.draw();
+        requestAnimationFrame(() => this.gameLoop());
+    }
 }
 
 preloadImages();
