@@ -301,6 +301,36 @@ function initSimpleSpaceInvaders() {
         pausedOverlay.innerHTML = 'CODDUO INVADERS';
     }
 
+    // Criar overlay de Game Over
+    let gameOverOverlay = document.getElementById('gameOverOverlay');
+    if (!gameOverOverlay) {
+        gameOverOverlay = document.createElement('div');
+        gameOverOverlay.id = 'gameOverOverlay';
+        gameOverOverlay.className = 'game-overlay';
+        gameOverOverlay.innerHTML = `
+            <div class="game-message">GAME OVER</div>
+            <div class="reload-button" id="gameOverReload">
+                <div class="reload-text">RESTART</div>
+            </div>
+        `;
+        container.appendChild(gameOverOverlay);
+    }
+
+    // Criar overlay de Victory
+    let victoryOverlay = document.getElementById('victoryOverlay');
+    if (!victoryOverlay) {
+        victoryOverlay = document.createElement('div');
+        victoryOverlay.id = 'victoryOverlay';
+        victoryOverlay.className = 'game-overlay victory';
+        victoryOverlay.innerHTML = `
+            <div class="game-message">VICTORY!</div>
+            <div class="reload-button" id="victoryReload">
+                <div class="reload-text">PLAY AGAIN</div>
+            </div>
+        `;
+        container.appendChild(victoryOverlay);
+    }
+
     try {
         const game = new SimpleSpaceInvaders(canvas);
         console.log('Space Invaders iniciado com sucesso');
@@ -309,18 +339,22 @@ function initSimpleSpaceInvaders() {
     }
 }
 
+
 class SimpleSpaceInvaders {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.container = document.getElementById('spaceInvadersContainer');
         this.pausedOverlay = document.getElementById('gamePaused');
+        this.gameOverOverlay = document.getElementById('gameOverOverlay');
+        this.victoryOverlay = document.getElementById('victoryOverlay');
         
         if (!this.ctx) {
             throw new Error('Não foi possível obter contexto 2D do canvas');
         }
         
         this.gameActive = false;
+        this.gameState = 'paused'; // 'paused', 'playing', 'gameOver', 'victory'
         this.mouseX = canvas.width / 2;
         this.mouseY = canvas.height / 2;
         this.mouseInCanvas = false;
@@ -340,7 +374,7 @@ class SimpleSpaceInvaders {
         this.bullets = [];
         this.bulletSpeed = 6;
         this.lastShot = 0;
-        this.shootCooldown = 300; // 300ms entre tiros
+        this.shootCooldown = 300;
         
         // Invaders
         this.invaders = [];
@@ -351,9 +385,71 @@ class SimpleSpaceInvaders {
         this.animationFrame = 0;
         
         this.setupControls();
+        this.setupReloadButtons();
         this.resizeCanvas();
         this.createInvaders();
         this.gameLoop();
+    }
+    
+    setupReloadButtons() {
+        // Game Over reload button
+        const gameOverReload = document.getElementById('gameOverReload');
+        if (gameOverReload) {
+            gameOverReload.addEventListener('click', () => this.restartGame());
+            gameOverReload.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.restartGame();
+            });
+        }
+
+        // Victory reload button
+        const victoryReload = document.getElementById('victoryReload');
+        if (victoryReload) {
+            victoryReload.addEventListener('click', () => this.restartGame());
+            victoryReload.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.restartGame();
+            });
+        }
+    }
+    
+    restartGame() {
+        // Reset game state
+        this.gameState = 'paused';
+        this.gameActive = false;
+        this.bullets = [];
+        this.invaderSpeed = 0.3;
+        this.invaderDirection = 1;
+        
+        // Reset player position
+        this.player.x = this.canvas.width / 2;
+        this.player.targetX = this.canvas.width / 2;
+        
+        // Hide overlays
+        this.gameOverOverlay.classList.remove('visible');
+        this.victoryOverlay.classList.remove('visible');
+        this.pausedOverlay.classList.add('visible');
+        
+        // Reset invaders
+        this.createInvaders();
+        
+        // Reset touch state
+        this.isTouching = false;
+        this.mouseInCanvas = false;
+    }
+    
+    showGameOver() {
+        this.gameState = 'gameOver';
+        this.gameActive = false;
+        this.pausedOverlay.classList.remove('visible');
+        this.gameOverOverlay.classList.add('visible');
+    }
+    
+    showVictory() {
+        this.gameState = 'victory';
+        this.gameActive = false;
+        this.pausedOverlay.classList.remove('visible');
+        this.victoryOverlay.classList.add('visible');
     }
     
     resizeCanvas() {
@@ -370,9 +466,10 @@ class SimpleSpaceInvaders {
     setupControls() {
         // Desktop: Mouse enter/leave for game activation
         this.container.addEventListener('mouseenter', () => {
-            if (!this.isTouching) { // Só ativa por mouse se não estiver tocando
+            if (!this.isTouching && this.gameState === 'paused') {
                 this.mouseInCanvas = true;
                 this.gameActive = true;
+                this.gameState = 'playing';
                 if (this.pausedOverlay) {
                     this.pausedOverlay.classList.remove('visible');
                 }
@@ -380,9 +477,10 @@ class SimpleSpaceInvaders {
         });
         
         this.container.addEventListener('mouseleave', () => {
-            if (!this.isTouching) { // Só desativa por mouse se não estiver tocando
+            if (!this.isTouching && this.gameState === 'playing') {
                 this.mouseInCanvas = false;
                 this.gameActive = false;
+                this.gameState = 'paused';
                 if (this.pausedOverlay) {
                     this.pausedOverlay.classList.add('visible');
                 }
@@ -392,7 +490,7 @@ class SimpleSpaceInvaders {
         
         // Desktop: Mouse movement
         this.canvas.addEventListener('mousemove', (e) => {
-            if (!this.gameActive || this.isTouching) return;
+            if (!this.gameActive || this.isTouching || this.gameState !== 'playing') return;
             const rect = this.canvas.getBoundingClientRect();
             this.mouseX = e.clientX - rect.left;
             this.mouseY = e.clientY - rect.top;
@@ -402,15 +500,20 @@ class SimpleSpaceInvaders {
         // Desktop: Mouse click to shoot
         this.canvas.addEventListener('click', (e) => {
             e.preventDefault();
-            if (this.gameActive && !this.isTouching) this.shoot();
+            if (this.gameActive && !this.isTouching && this.gameState === 'playing') {
+                this.shoot();
+            }
         });
         
-        // Mobile: Touch controls melhorados
+        // Mobile: Touch controls
         this.canvas.addEventListener('touchstart', (e) => {
             e.preventDefault();
+            if (this.gameState !== 'paused') return;
+            
             this.isTouching = true;
             this.mouseInCanvas = true;
             this.gameActive = true;
+            this.gameState = 'playing';
             
             if (this.pausedOverlay) {
                 this.pausedOverlay.classList.remove('visible');
@@ -422,13 +525,12 @@ class SimpleSpaceInvaders {
             this.mouseY = touch.clientY - rect.top;
             this.player.targetX = this.mouseX;
             
-            // Primeiro toque atira
             this.shoot();
         });
         
         this.canvas.addEventListener('touchmove', (e) => {
             e.preventDefault();
-            if (!this.gameActive || !this.isTouching) return;
+            if (!this.gameActive || !this.isTouching || this.gameState !== 'playing') return;
             
             const rect = this.canvas.getBoundingClientRect();
             const touch = e.touches[0];
@@ -440,21 +542,25 @@ class SimpleSpaceInvaders {
         
         this.canvas.addEventListener('touchend', (e) => {
             e.preventDefault();
+            if (this.gameState !== 'playing') return;
             
-            // Se o usuário moveu recentemente, não atira
             const timeSinceMove = Date.now() - this.lastTouchMove;
-            if (timeSinceMove > 100) { // Se não moveu por 100ms, considera como toque para atirar
+            if (timeSinceMove > 100) {
                 this.shoot();
             }
         });
         
         // Mobile: Touch fora do canvas para pausar
         document.addEventListener('touchstart', (e) => {
-            if (!this.canvas.contains(e.target) && !this.container.contains(e.target)) {
+            if (!this.canvas.contains(e.target) && 
+                !this.container.contains(e.target) && 
+                this.gameState === 'playing') {
+                
                 if (this.isTouching) {
                     this.isTouching = false;
                     this.mouseInCanvas = false;
                     this.gameActive = false;
+                    this.gameState = 'paused';
                     if (this.pausedOverlay) {
                         this.pausedOverlay.classList.add('visible');
                     }
@@ -491,7 +597,7 @@ class SimpleSpaceInvaders {
     
     shoot() {
         const now = Date.now();
-        if (now - this.lastShot < this.shootCooldown) return; // Cooldown entre tiros
+        if (now - this.lastShot < this.shootCooldown) return;
         
         this.bullets.push({
             x: this.player.x,
@@ -510,14 +616,6 @@ class SimpleSpaceInvaders {
         return distance < (size1 + size2) / 2;
     }
     
-    resetGame() {
-        this.bullets = [];
-        this.createInvaders();
-        this.player.x = this.canvas.width / 2;
-        this.player.targetX = this.canvas.width / 2;
-        this.invaderSpeed = 0.3;
-    }
-    
     update() {
         this.animationFrame++;
         
@@ -528,8 +626,8 @@ class SimpleSpaceInvaders {
         // Keep player in bounds
         this.player.x = Math.max(this.player.size, Math.min(this.canvas.width - this.player.size, this.player.x));
         
-        // Only update game logic if active
-        if (!this.gameActive) return;
+        // Only update game logic if playing
+        if (this.gameState !== 'playing') return;
         
         // Move bullets
         this.bullets = this.bullets.filter(bullet => {
@@ -551,13 +649,15 @@ class SimpleSpaceInvaders {
                 moveDown = true;
             }
             
+            // Game Over: Invader reached bottom
             if (invader.y >= this.canvas.height - 80) {
-                this.resetGame();
+                this.showGameOver();
                 return;
             }
             
+            // Game Over: Invader hit player
             if (this.checkCollision(invader, this.player, invader.size, this.player.hitbox)) {
-                this.resetGame();
+                this.showGameOver();
                 return;
             }
         }
@@ -582,12 +682,9 @@ class SimpleSpaceInvaders {
             return true;
         });
         
-        // Respawn invaders if all destroyed
+        // Victory: All invaders destroyed
         if (allInvadersDead) {
-            setTimeout(() => {
-                this.createInvaders();
-                this.invaderSpeed += 0.1;
-            }, 1000);
+            this.showVictory();
         }
     }
     
@@ -637,8 +734,8 @@ class SimpleSpaceInvaders {
         ];
         this.drawPixelSprite(this.player.x, this.player.y, this.player.size, '#8b5fbf', playerPattern);
         
-        // Only draw game elements if active
-        if (!this.gameActive) return;
+        // Only draw game elements if playing
+        if (this.gameState !== 'playing') return;
         
         // Draw bullets
         this.ctx.fillStyle = '#ffff00';
@@ -692,7 +789,7 @@ class SimpleSpaceInvaders {
                     invader.x, 
                     invader.y, 
                     invader.size, 
-                    '#ffffff', // BRANCO
+                    '#ffffff',
                     pattern
                 );
             }
@@ -705,6 +802,7 @@ class SimpleSpaceInvaders {
         requestAnimationFrame(() => this.gameLoop());
     }
 }
+
 
 preloadImages();
 
