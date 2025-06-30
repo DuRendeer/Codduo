@@ -915,8 +915,10 @@ nav {
   text-shadow: 0 0 20px rgba(139, 95, 191, 0.3);
 }
 
+
+
 .service-card:hover .service-icon {
-  transform: scale(1.1) rotateY(10deg);
+  transform: scale(1) rotateY(10deg);
   filter: drop-shadow(0 0 15px rgba(139, 95, 191, 0.5));
 }
 
@@ -1574,7 +1576,6 @@ footer {
   margin-top: 0;
   width: 100%;
   clear: both;
-  display: block;
 }
 
 footer::before {
@@ -1607,6 +1608,7 @@ footer::before {
 
 footer .container {
   position: relative;
+  text-align: center;
   z-index: 2;
 }
 
@@ -1614,6 +1616,7 @@ footer p {
   color: var(--text-secondary);
   font-size: 1rem;
   position: relative;
+  text-align: center;
   z-index: 2;
   margin: 0;
   padding: 0;
@@ -2587,18 +2590,21 @@ footer .container {
   left: 0;
   background: linear-gradient(
     90deg,
-    rgba(10, 10, 10, 1) 0%,
-    rgba(10, 10, 10, 0.8) 30%,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(15, 12, 18, 0.6) 25%,
+    rgba(20, 15, 25, 0.4) 60%,
     transparent 100%
   );
 }
 
+
 .reviews-carousel::after {
   right: 0;
   background: linear-gradient(
-    to left,
-    rgba(24, 19, 29, 0.153) 0%,
-    rgba(22, 17, 26, 0.538) 30%,
+    -90deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(15, 12, 18, 0.6) 25%,
+    rgba(20, 15, 25, 0.4) 60%,
     transparent 100%
   );
 }
@@ -2637,9 +2643,18 @@ footer .container {
     height: auto;
     overflow: visible;
   }
+  
+  .reviews-carousel::before,
+  .reviews-carousel::after {
+    width: 100px;
+  }
 }
 
 @media (max-width: 768px) {
+  .reviews {
+    padding: 6rem 0;
+  }
+  
   .review-card {
     min-width: 280px;
     min-height: 280px;
@@ -2650,7 +2665,11 @@ footer .container {
 
   .reviews-carousel::before,
   .reviews-carousel::after {
-    width: auto;
+    width: 80px;
+  }
+  
+  .reviews-track {
+    animation-duration: 35s;
   }
 }
 
@@ -2673,7 +2692,28 @@ footer .container {
     height: 40px;
     font-size: 1rem;
   }
+  
+  .reviews-carousel::before,
+  .reviews-carousel::after {
+    width: 60px;
+  }
+  
+  .reviews-track {
+    animation-duration: 30s;
+    gap: 1.5rem;
+  }
 }
+  .review-text {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
 
 /* Enhanced About Section */
 .about {
