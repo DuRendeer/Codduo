@@ -316,7 +316,7 @@ async function generateContract() {
             //     location.reload();
             // }
             
-        } else {
+
         } else {
             // Este bloco nunca vai executar com no-cors, mas fica aqui para compatibilidade
             throw new Error('Erro no envio');
