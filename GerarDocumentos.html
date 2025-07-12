@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Contratos - CODDUO</title>
+    <link rel="stylesheet" href="GerarDocumentos/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="CODDUO Logo" class="company-logo" onerror="this.style.display='none'; document.querySelector('.fallback-logo').style.display='flex';">
+                <div class="fallback-logo">
+                    <div class="logo">CD</div>
+                    <div class="company-name">CODDUO</div>
+                </div>
+            </div>
+            <h1 class="header-subtitle">Sistema de Contratos</h1>
+            <p class="header-description">
+                Preencha os dados e receba seu contrato pronto no WhatsApp
+            </p>
+        </div>
+
+        <!-- Formulário Principal -->
+        <div class="form-section">
+            <div class="section-header">
+                <div class="section-icon">📋</div>
+                <h2 class="section-title">Dados do Contrato</h2>
+            </div>
+
+            <!-- Dados do Cliente -->
+            <div class="form-group-title">👤 Cliente</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo / Razão Social *</label>
+                    <input type="text" class="form-input" id="clientName" placeholder="Digite o nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CPF / CNPJ *</label>
+                    <input type="text" class="form-input" id="clientDoc" placeholder="000.000.000-00" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-mail *</label>
+                    <input type="email" class="form-input" id="clientEmail" placeholder="contato@empresa.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone/WhatsApp *</label>
+                    <input type="tel" class="form-input" id="clientPhone" placeholder="(42) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço Completo *</label>
+                    <input type="text" class="form-input" id="clientAddress" placeholder="Rua, número, complemento" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Cidade/Estado *</label>
+                    <input type="text" class="form-input" id="clientCity" placeholder="Prudentópolis/PR" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CEP *</label>
+                    <input type="text" class="form-input" id="clientCEP" placeholder="00000-000" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo de Pessoa</label>
+                    <select class="form-input" id="clientType">
+                        <option value="juridica">Pessoa Jurídica</option>
+                        <option value="fisica">Pessoa Física</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Serviços -->
+            <div class="form-group-title">⚙️ Serviço</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Serviço Contratado *</label>
+                    <select class="form-input" id="serviceSelect" onchange="updateServiceInfo()" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="site-basico">Site Institucional - R$ 700</option>
+                        <option value="plataforma-web">Plataforma Web - R$ 1.400</option>
+                        <option value="sistema-completo">Sistema Completo - R$ 2.275</option>
+                        <option value="app-mobile">App Mobile - R$ 4.200</option>
+                        <option value="personalizado">Projeto Personalizado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Valor do Projeto (R$) *</label>
+                    <input type="number" class="form-input" id="projectValue" placeholder="0,00" min="700" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Prazo (dias úteis) *</label>
+                    <input type="number" class="form-input" id="projectDeadline" placeholder="30" min="7" required>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Descrição do Projeto *</label>
+                    <textarea class="form-input" id="serviceDescription" rows="3" placeholder="Descreva o projeto..." required></textarea>
+                </div>
+            </div>
+
+            <!-- Pagamento -->
+            <div class="form-group-title">💰 Pagamento</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Forma de Pagamento</label>
+                    <select class="form-input" id="paymentMethod">
+                        <option value="vista">À Vista - 5% Desconto</option>
+                        <option value="2x">2x Sem Juros</option>
+                        <option value="3x">3x - 1% Juros/Mês</option>
+                        <option value="6x">6x - 4% Juros/Mês</option>
+                        <option value="12x">12x - 10% Juros/Mês</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Método de Pagamento</label>
+                    <select class="form-input" id="paymentType">
+                        <option value="pix">PIX</option>
+                        <option value="transferencia">Transferência</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="boleto">Boleto</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-input" id="observations" rows="2" placeholder="Observações adicionais..."></textarea>
+                </div>
+            </div>
+
+            <!-- Botão Principal -->
+            <div class="action-section">
+                <button class="btn-primary" onclick="generateContract()" id="generateBtn">
+                    🚀 Gerar Contrato
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <h3>Gerando Contrato</h3>
+            <p>Enviando dados para processamento...</p>
+        </div>
+    </div>
+
+    <script src="GerarDocumentos/script.js"></script>
+</body>
+</html>
